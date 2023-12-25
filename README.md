@@ -7,7 +7,13 @@ Gerenciador de tarefas com boas práticas do FastAPI
 > **Nota:** Esse projeto foi feito com base no
 > [Curso Básico de FastAPI do Zero](https://fastapidozero.dunossauro.com)
 
-## Boas práticas abordadas
+
+### Iniciar Projeto
+```sh
+docker-compose up
+```
+
+### Boas práticas abordadas
 - Criação da documentação
 - Desenvolvimento baseado em testes (TDD)
 - Banco de dados evolutivo (Migrations)
@@ -17,21 +23,16 @@ Gerenciador de tarefas com boas práticas do FastAPI
 - Deploy no Fly.io
 - Integração Continua (CI/CD)
 
-## Iniciar Projeto
-```sh
-docker-compose up
-```
+### Contribuir com o desenvolvimento
 
-## Contribuir com o desenvolvimento
-
-### Dependências
+#### Dependências
 - Python3.11.6
   - Pode ser usado com o [pyenv](https://github.com/pyenv/pyenv)
 - Poetry
 - Docker
 
 
-### Iniciar o projeto
+#### Iniciar o projeto
 ```sh
 # Instala as dependências do projeto
 poetry install
@@ -52,14 +53,23 @@ task format
 task run
 ```
 
-### Git Flow
+#### Git Flow
 
 Utilizando alguns padrões do
 [conventional commits em português](https://www.conventionalcommits.org/pt-br/v1.0.0)
 
-- Commits <ação>: <mensagem> `(ex: feat: criação de crud em /users)`
-- Branches <ação>-<usuário>-<mensagem> `(ex: feat-brunodavi-crud-user)`
-- Pull Requests [ <AÇÃO> ] <Titulo> `(ex: [ FEATURE ] Criação de CRUD na rota de usuários)`
-- Issues <Titulo> `(ex: Ouve um problema na criação de usuários)`
-  1. Veja se o problema já foi resolvido
-  2. Descreva o que aconteceu e o que você já tentou fazer
+- Commits
+  - Escopo: `<ação>: <mensagem>`
+  - Exemplo: `feat: criação de crud em /users`
+- Branches
+  - Escopo: `<ação>-<usuário>-<mensagem>`
+  - Exemplo: `feat-brunodavi-crud-da-rota-users`
+- Pull Requests
+  - Escopo: `[ <AÇÃO> ] <Titulo>`
+  - Exemplo:`[ FEAT ] Criação de CRUD na rota de usuários`
+- Issues
+  - Regras: 
+    - 1. Veja se o problema já foi resolvido
+    - 2. Descreva o que aconteceu e o que você já tentou fazer
+  - Escopo: `<Titulo>`
+  - Exemplo: `Ouve um problema na criação de usuários`
