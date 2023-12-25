@@ -35,13 +35,16 @@ docker-compose up
 # Instala as dependências do projeto
 poetry install
 
-# Inicia as tarefas de testes
+# Inicia os testes
 task test
 
-# Inicia as tarefas do linter
+# Gera um arquivo de cobertura de testes
+task post_test
+
+# Inicia o linter
 task lint
 
-# Inicia as tarefas de correções do linter
+# Inicia as correções do linter
 task format
 
 # Inicia o Projeto
