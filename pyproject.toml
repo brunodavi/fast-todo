@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "fast-todo-new"
+version = "0.1.0"
+description = ""
+authors = ["Bruno Davi <48166556+brunodavi@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
