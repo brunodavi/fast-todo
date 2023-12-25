@@ -25,7 +25,8 @@ docker-compose up
 ## Contribuir com o desenvolvimento
 
 ### Dependências
-- Python 11
+- Python3.11.6
+  - Pode ser usado com o [pyenv](https://github.com/pyenv/pyenv)
 - Poetry
 - Docker
 
