@@ -1,6 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 
-from fast_todo.schemas import UserPublic, UserSchema, UserDB
+from fast_todo.schemas import Message, UserDB, UserList, UserPublic, UserSchema
 
 app = FastAPI()
 
@@ -10,7 +10,7 @@ def read_root():
     return {'message': 'Olá Mundo!'}
 
 
-fake_database = [] # para estudo
+fake_database = []   # para estudo
 
 
 @app.post('/users', status_code=201, response_model=UserPublic)
@@ -19,3 +19,29 @@ def create_user(user: UserSchema):
     fake_database.append(user_with_id)
 
     return user_with_id
+
+
+@app.get('/users', status_code=200, response_model=UserList)
+def get_users():
+    return {'users': fake_database}
+
+
+@app.put('/users/{user_id}', status_code=200, response_model=UserPublic)
+def update_user(user_id: int, user: UserSchema):
+    if user_id > len(fake_database) or user_id < 1:
+        raise HTTPException(status_code=404, detail='Usuário não encontrado')
+
+    user_with_id = UserDB(**user.model_dump(), id=user_id)
+    fake_database[user_id - 1] = user_with_id
+
+    return user_with_id
+
+
+@app.delete('/users/{user_id}', response_model=Message)
+def delete_user(user_id: int):
+    if user_id < len(fake_database) or user_id < 1:
+        raise HTTPException(status_code=404, detail='Usuário não encontrado')
+
+    del fake_database[user_id - 1]
+
+    return {'detail': 'Usuário deletado'}
