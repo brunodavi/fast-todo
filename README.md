@@ -41,8 +41,11 @@ task test
 # Inicia as tarefas do linter
 task lint
 
+# Inicia as tarefas de correções do linter
+task format
+
 # Inicia o Projeto
-task start
+task run
 ```
 
 ### Git Flow
