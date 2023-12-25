@@ -7,6 +7,16 @@ Gerenciador de tarefas com boas práticas do FastAPI
 > **Nota:** Esse projeto foi feito com base no
 > [Curso Básico de FastAPI do Zero](https://fastapidozero.dunossauro.com)
 
+## Boas práticas abordadas
+- Criação da documentação
+- Desenvolvimento baseado em testes (TDD)
+- Banco de dados evolutivo (Migrations)
+- Injeção de dependências
+- ORM com SQLAlchemy
+- Conteinerização do Projeto
+- Deploy no Fly.io
+- Integração Continua (CI/CD)
+
 ## Iniciar Projeto
 ```sh
 docker-compose up
