@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from fast_todo.app import app
 from fast_todo.database import get_session
 from fast_todo.models import Base, User
+from fast_todo.security import get_password_hash
 
 
 @pytest.fixture
@@ -41,11 +42,24 @@ def user(session):
     user = User(
         username='Geo',
         email='geo@example.com.br',
-        password='secret',
+        password=get_password_hash('secret'),
     )
 
     session.add(user)
     session.commit()
     session.refresh(user)
 
+    user.clean_password = 'secret'
+
     return user
+
+
+@pytest.fixture
+def token(client, user):
+    response = client.post(
+        '/token',
+        data={'username': user.email, 'password': user.clean_password},
+    )
+
+    json = response.json()
+    return json['access_token']

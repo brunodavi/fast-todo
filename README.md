@@ -26,30 +26,47 @@ docker-compose up
 ### Contribuir com o desenvolvimento
 
 #### Dependências
-- Python3.11.6
+- [Python3.11.6](https://www.python.org/downloads)
   - Pode ser usado com o [pyenv](https://github.com/pyenv/pyenv)
-- Poetry
-- Docker
+- [Poetry](https://python-poetry.org/docs/#installation)
+  - Gerencia o projeto e suas dependências
+- [Docker](https://www.docker.com)
+  - Gerencia o ambiente da aplicação
 
 
-#### Iniciar o projeto
+### Para inciar o projeto
 ```sh
-# Instala as dependências do projeto
+# Instale as dependências do projeto
 poetry install
+```
+
+#### Automações de tarefas
+```sh
+# Inicia a verificação de estilo do código
+task lint
+
+# Inicia as correções do estilo do código
+task format
 
 # Inicia os testes
 task test
 
-# Gera um arquivo de cobertura de testes
+# Gera um arquivo de cobertura de testes em html
 task post_test
 
-# Inicia o linter
-task lint
+# Cria uma nova migração
+task db_migration -m '<mensagem>'
 
-# Inicia as correções do linter
-task format
+# Cria o banco de dados
+task db_init
 
-# Inicia o Projeto
+# Atualiza a próxima migração
+task db_up +1
+
+# Retorna a migração anterior
+task db_down -1
+
+# Inicia o projeto
 task run
 ```
 

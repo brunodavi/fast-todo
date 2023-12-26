@@ -13,6 +13,9 @@ pydantic = {extras = ["email"], version = "^2.5.3"}
 sqlalchemy = "^2.0.23"
 pydantic-settings = "^2.1.0"
 alembic = "^1.13.1"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-multipart = "^0.0.6"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -47,6 +50,12 @@ extend-exclude = '(migrations/)'
 lint = 'ruff . && blue --check . --diff'
 format = 'blue .  && isort .'
 run = 'uvicorn fast_todo.app:app --reload'
+
 pre_test = 'task lint'
 test = 'pytest -s -x --cov=fast_todo -vv'
 post_test = 'coverage html'
+
+db_migration = 'alembic revision --autogenerate'
+db_init = 'alembic upgrade head'
+db_up = 'alembic upgrade'
+db_down = 'alembic downgrade'
