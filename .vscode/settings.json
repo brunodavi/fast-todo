@@ -2,8 +2,6 @@
   "python.testing.pytestArgs": [
     "-s",
     "-vv",
-    "--cov=fast_todo",
-    "--cov-report=html",
     "."
   ],
   "python.testing.unittestEnabled": false,
