@@ -55,10 +55,16 @@ task test
 task post_test
 
 # Cria uma nova migração
-task create_migration -m '<mensagem>'
+task db_migration -m '<mensagem>'
 
 # Cria o banco de dados
-task create_db
+task db_init
+
+# Atualiza a próxima migração
+task db_up +1
+
+# Retorna a migração anterior
+task db_down -1
 
 # Inicia o projeto
 task run
