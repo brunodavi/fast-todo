@@ -8,7 +8,7 @@ Gerenciador de tarefas com boas práticas do FastAPI
 > [Curso Básico de FastAPI do Zero](https://fastapidozero.dunossauro.com)
 
 
-### Iniciar Projeto
+## Iniciar Projeto
 ```sh
 docker-compose up
 ```
@@ -34,10 +34,22 @@ docker-compose up
   - Gerencia o ambiente da aplicação
 
 
-### Para inciar o projeto
+#### Iniciar o projeto
 ```sh
+# Crie o .env com base no .env.example e o modifique
+cp .env.example .env
+
 # Instale as dependências do projeto
 poetry install
+
+# Entre no ambiente virtual (.venv)
+poetry shell
+
+# Crie banco de dados e suas tabelas
+task db_init
+
+# Inicie o projeto
+task run
 ```
 
 #### Automações de tarefas
