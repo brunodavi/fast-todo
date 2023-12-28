@@ -7,23 +7,26 @@ from passlib.context import CryptContext
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from .database import get_session
-from .models import User
-from .schemas import TokenData
+from fast_todo.database import get_session
+from fast_todo.models import User
+from fast_todo.schemas import TokenData
+from fast_todo.settings import Settings
 
-SECRET_KEY = 'secret'   # provisório
-ALGORITHM = 'HS256'
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+settings = Settings()
 
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/auth/token')
 
 
 def create_access_token(data: dict):
     to_enconde = data.copy()
-    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.utcnow() + timedelta(
+        minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES
+    )
     to_enconde.update({'exp': expire})
-    encoded_jwt = jwt.encode(to_enconde, SECRET_KEY, algorithm=ALGORITHM)
+    encoded_jwt = jwt.encode(
+        to_enconde, settings.SECRET_KEY, algorithm=settings.ALGORITHM
+    )
     return encoded_jwt
 
 
@@ -46,7 +49,9 @@ async def get_current_user(
     )
 
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
+        payload = jwt.decode(
+            token, settings.SECRET_KEY, algorithms=settings.ALGORITHM
+        )
         username: str = payload.get('sub')
 
         if not username:
