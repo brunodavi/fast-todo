@@ -1,6 +1,40 @@
 from fast_todo.schemas import UserPublic
 
 
+def test_update_user(client, user, token):
+    response = client.put(
+        f'/users/{user.id}',
+        headers={'Authorization': f'Bearer {token}'},
+        json={
+            'username': 'new_user',
+            'email': 'new@email.com',
+            'password': 'new_pass',
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json() == {
+        'id': 0,
+        'username': 'new_user',
+        'email': 'new@email.com',
+    }
+
+
+def test_update_user_with_wrong_user(client, other_user, token):
+    response = client.put(
+        f'/users/{other_user.id}',
+        headers={'Authorization': f'Bearer {token}'},
+        json={
+            'username': 'invalid_user',
+            'email': 'invalid_email@example.com',
+            'password': 'wrong_password',
+        },
+    )
+
+    assert response.status_code == 400
+    assert response.json() == {'detail': 'Permissões insuficientes'}
+
+
 def test_create_user(client):
     response = client.post(
         '/users',
@@ -48,25 +82,6 @@ def test_get_users_with_users(client, user):
     assert response.json() == {'users': [user_schema]}
 
 
-def test_update_user(client, user, token):
-    response = client.put(
-        f'/users/{user.id}',
-        headers={'Authorization': f'Bearer {token}'},
-        json={
-            'username': 'new_user',
-            'email': 'new@email.com',
-            'password': 'new_pass',
-        },
-    )
-
-    assert response.status_code == 200
-    assert response.json() == {
-        'id': 1,
-        'username': 'new_user',
-        'email': 'new@email.com',
-    }
-
-
 def test_delete_user(client, user, token):
     response = client.delete(
         f'/users/{user.id}',
@@ -75,3 +90,13 @@ def test_delete_user(client, user, token):
 
     assert response.status_code == 200
     assert response.json() == {'detail': 'Usuário deletado'}
+
+
+def test_delete_user_with_wrong_user(client, other_user, token):
+    response = client.delete(
+        f'/users/{other_user.id}',
+        headers={'Authorization': f'Bearer {token}'},
+    )
+
+    assert response.status_code == 400
+    assert response.json() == {'detail': 'Permissões insuficientes'}
