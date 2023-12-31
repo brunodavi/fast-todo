@@ -8,7 +8,11 @@ from sqlalchemy.orm import Session
 from fast_todo.database import get_session
 from fast_todo.models import User
 from fast_todo.schemas import Token
-from fast_todo.security import create_access_token, verify_password, get_current_user
+from fast_todo.security import (
+    create_access_token,
+    get_current_user,
+    verify_password,
+)
 
 router = APIRouter(prefix='/auth', tags=['auth'])
 
