@@ -44,7 +44,7 @@ async def get_current_user(
 ):
     credentials_exceptions = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
-        detail='Credenciais invalidas',
+        detail='Credenciais inválidas',
         headers={'WWW-Authenticate': 'Bearer'},
     )
 
