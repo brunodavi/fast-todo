@@ -14,7 +14,7 @@ def test_update_user(client, user, token):
 
     assert response.status_code == 200
     assert response.json() == {
-        'id': 0,
+        'id': user.id,
         'username': 'new_user',
         'email': 'new@email.com',
     }
