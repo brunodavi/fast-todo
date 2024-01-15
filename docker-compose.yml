@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  fast_todo_db:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    env_file:
+        - .env
+    environment:
+      POSTGRES_USER: app_user
+      POSTGRES_DB: app_db
+      POSTGRES_PASSWORD: app_password
+    ports:
+      - "5432:5432"
+
+  fast_todo_app:
+    image: fast_todo_app
+    entrypoint: ./entrypoint.sh
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - fast_todo_db
+    env_file:
+        - .env
+    environment:
+      DATABASE_URL: postgresql://app_user:app_password@fast_todo_db:5432/app_db
+
+volumes:
+  pgdata:
