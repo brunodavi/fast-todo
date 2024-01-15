@@ -7,6 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from fast_todo.app import app
 from fast_todo.database import get_session
 from fast_todo.models import Base, User
+from fast_todo.settings import Settings
 from fast_todo.security import get_password_hash
 
 
@@ -23,8 +24,7 @@ class UserFactory(factory.Factory):
 @pytest.fixture
 def session():
     engine = create_engine(
-        'sqlite:///:memory:',
-        connect_args={'check_same_thread': False},
+        Settings().DATABASE_URL,
         poolclass=StaticPool,
     )
 
