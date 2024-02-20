@@ -13,7 +13,6 @@ from fast_todo.schemas import (
     TodoSchema,
     TodoUpdate,
 )
-
 from fast_todo.security import get_current_user
 
 CurrentUser = Annotated[User, Depends(get_current_user)]
