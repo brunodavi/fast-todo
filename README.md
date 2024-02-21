@@ -1,31 +1,51 @@
 # Fast Todo
 
-![imagem-do-projeto](/images/imagem-do-projeto)
+![imagem-do-projeto](images/imagem-do-projeto.png)
 
 Gerenciador de tarefas com boas práticas do FastAPI
 
 > **Nota:** Esse projeto foi feito com base no
 > [Curso Básico de FastAPI do Zero](https://fastapidozero.dunossauro.com)
 
+## Como Usar
 
-## Iniciar Projeto
+Inicie o projeto com o `docker-compose`
+
 ```sh
 docker-compose up
 ```
 
-### Boas práticas abordadas
-- Criação da documentação
-- Desenvolvimento baseado em testes (TDD)
-- Banco de dados evolutivo (Migrations)
-- Injeção de dependências
-- ORM com SQLAlchemy
-- Conteinerização do Projeto
-- Deploy no Fly.io
-- Integração Continua (CI/CD)
+Ao iniciar o projeto vá em http://localhost:8000/docs para ver toda a sua documentação
 
-### Contribuir com o desenvolvimento
+Passos iniciais:
 
-#### Dependências
+1. Crie um usuário em `POST /users/ Create User`
+2. Logue com esse usuário clicando em `Authorize`
+3. Quando logado o usuário pode gerenciar suas informações e tarefas
+
+> **Obs:** O `username` é o `email`
+> _Exemplo:_
+> 
+> username:
+> user@example.com
+> 
+> password:
+> user12345
+
+## Boas Práticas
+
+- [x] Desenvolvimento baseado em testes (TDD)
+- [x] Injeção de dependências
+- [x] Banco de dados evolutivo (Migrations)
+- [x] ORM com SQLAlchemy
+- [x] Conteinerização do Projeto
+- [ ] Integração Continua (CI/CD)
+- [ ] Deploy no Fly.io
+
+## Contribua com o desenvolvimento
+
+### Dependências
+
 - [Python3.11.6](https://www.python.org/downloads)
   - Pode ser usado com o [pyenv](https://github.com/pyenv/pyenv)
 - [Poetry](https://python-poetry.org/docs/#installation)
@@ -33,9 +53,9 @@ docker-compose up
 - [Docker](https://www.docker.com)
   - Gerencia o ambiente da aplicação
 
+### Iniciar aplicação em desenvolvimento
 
-#### Iniciar o projeto
-```sh
+```shell
 # Crie o .env com base no .env.example e o modifique
 cp .env.example .env
 
@@ -52,13 +72,14 @@ task db_init
 task run
 ```
 
-#### Automações de tarefas
-```sh
+### Automação de tarefas
+
+```shell
 # Inicia a verificação de estilo do código
 task lint
 
 # Inicia as correções do estilo do código
-task format
+task fix
 
 # Inicia os testes
 task test
@@ -82,7 +103,7 @@ task db_down -1
 task run
 ```
 
-#### Git Flow
+### Git Flow
 
 Utilizando alguns padrões do
 [conventional commits em português](https://www.conventionalcommits.org/pt-br/v1.0.0)

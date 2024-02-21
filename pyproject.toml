@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "3.11.*"
-fastapi = "^0.105.0"
+fastapi = "^0.109.1"
 uvicorn = "^0.25.0"
 pydantic = {extras = ["email"], version = "^2.5.3"}
 sqlalchemy = "^2.0.23"
@@ -15,7 +15,8 @@ pydantic-settings = "^2.1.0"
 alembic = "^1.13.1"
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
-python-multipart = "^0.0.6"
+python-multipart = "^0.0.7"
+psycopg2-binary = "^2.9.9"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -50,7 +51,7 @@ extend-exclude = '(migrations/)'
 
 [tool.taskipy.tasks]
 lint = 'ruff . && blue --check . --diff'
-format = 'blue .  && isort .'
+fix = 'blue .  && isort .'
 run = 'uvicorn fast_todo.app:app --reload'
 
 pre_test = 'task lint'

@@ -1,16 +1,6 @@
-import factory.fuzzy
+from fast_todo.models import TodoState
 
-from fast_todo.models import Todo, TodoState
-
-
-class TodoFactory(factory.Factory):
-    class Meta:
-        model = Todo
-
-    title = factory.Faker('text')
-    description = factory.Faker('text')
-    state = factory.fuzzy.FuzzyChoice(TodoState)
-    user_id = 1
+from tests.factories import TodoFactory
 
 
 def test_create_todo(client, token):
