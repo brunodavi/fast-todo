@@ -1,5 +1,6 @@
 import factory
 import factory.fuzzy
+
 from fast_todo.models import Todo, TodoState, User
 
 

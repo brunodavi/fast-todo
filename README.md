@@ -39,8 +39,8 @@ Passos iniciais:
 - [x] Banco de dados evolutivo (Migrations)
 - [x] ORM com SQLAlchemy
 - [x] Conteinerização do Projeto
-- [ ] Integração Continua (CI/CD)
-- [ ] Deploy no Fly.io
+- [x] Integração Continua (CI/CD)
+- [x] Deploy no Fly.io
 
 ## Contribua com o desenvolvimento
 

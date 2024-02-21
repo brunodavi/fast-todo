@@ -10,10 +10,12 @@ from fast_todo.security import get_password_hash
 from fast_todo.settings import Settings
 from tests.factories import UserFactory
 
+settings = Settings()
+
 
 @pytest.fixture
 def session():
-    engine = create_engine(Settings().DATABASE_URL)
+    engine = create_engine(settings.DATABASE_URL)
 
     Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     Base.metadata.create_all(engine)
@@ -39,7 +41,7 @@ def client(session):
 
 @pytest.fixture
 def user(session):
-    password = 'secret'
+    password = 'test12345'
     user = UserFactory(password=get_password_hash(password))
 
     session.add(user)
@@ -52,9 +54,9 @@ def user(session):
 
 
 @pytest.fixture
-def other_user(session):
-    password = 'secret'
-    user = UserFactory(password=get_password_hash(password))
+def user2(session):
+    password = 'test12345'
+    user = UserFactory(id=2, password=get_password_hash(password))
 
     session.add(user)
     session.commit()

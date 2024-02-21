@@ -1,5 +1,4 @@
 from fast_todo.models import TodoState
-
 from tests.factories import TodoFactory
 
 
