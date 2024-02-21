@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "fast-todo"
 version = "0.1.0"
-description = ""
+description = "Gerenciador de tarefas com boas práticas do FastAPI"
 authors = ["Bruno Davi <48166556+brunodavi@users.noreply.github.com>"]
 readme = "README.md"
 
